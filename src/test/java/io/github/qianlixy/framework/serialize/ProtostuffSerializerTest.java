@@ -19,16 +19,6 @@ public class ProtostuffSerializerTest extends BaseTest {
 		super.testSerialize();
 	}
 
-	@Test
-	public void testSerialize_withList_withWrapper() throws IOException, ClassNotFoundException {
-		super.testSerialize_withList_withWrapper();
-	}
-
-	@Test
-	public void testSerialize_withMap_withWrapper() throws IOException, ClassNotFoundException {
-		super.testSerialize_withMap_withWrapper();
-	}
-
 	@Override
 	@Test
 	public void testSerialize_withList() throws IOException, ClassNotFoundException {
@@ -39,6 +29,12 @@ public class ProtostuffSerializerTest extends BaseTest {
 	@Test
 	public void testSerialize_withMap() throws IOException, ClassNotFoundException {
 		super.testSerialize_withMap();
+	}
+
+	@Override
+	@Test
+	public void testSerialize_withSet() throws IOException, ClassNotFoundException {
+		super.testSerialize_withSet();
 	}
 
 }

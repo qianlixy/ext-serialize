@@ -5,10 +5,13 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +25,8 @@ public abstract class BaseTest {
 
 	protected static List<TestBean> testList = null;
 
+	protected static Set<TestBean> testSet = null;
+
 	protected static Map<String, TestBean> testMap = null;
 
 	@BeforeClass
@@ -34,6 +39,14 @@ public abstract class BaseTest {
 		((List<TestBean>) testList).add(new TestBean("Dong4", 25));
 		((List<TestBean>) testList).add(new TestBean("Dong5", 26));
 
+		testSet = new HashSet<>();
+		((Set<TestBean>) testSet).add(new TestBean("Dong", 21));
+		((Set<TestBean>) testSet).add(new TestBean("Dong1", 22));
+		((Set<TestBean>) testSet).add(new TestBean("Dong2", 23));
+		((Set<TestBean>) testSet).add(new TestBean("Dong3", 24));
+		((Set<TestBean>) testSet).add(new TestBean("Dong4", 25));
+		((Set<TestBean>) testSet).add(new TestBean("Dong5", 26));
+
 		testMap = new HashMap<>();
 		((Map<String, TestBean>) testMap).put("1", new TestBean("Dong0", 21));
 		((Map<String, TestBean>) testMap).put("2", new TestBean("Dong1", 22));
@@ -44,47 +57,36 @@ public abstract class BaseTest {
 	}
 
 	public void testSerialize() throws IOException, ClassNotFoundException {
-		byte[] serialize = getSerializer().serialize(testBean, TestBean.class);
-		log.info("Byte array's length is {}", serialize.length);
-		Object deserialize = getSerializer().deserialize(serialize, TestBean.class);
+		byte[] serialize = getSerializer().serialize(testBean);
+		// log.info("Byte array's length is {}", serialize.length);
+		Object deserialize = getSerializer().deserialize(serialize);
 		assertEquals(testBean, deserialize);
 	}
 
 	public void testSerialize_withList() throws IOException, ClassNotFoundException {
-		byte[] serialize = getSerializer().serialize(testList, ArrayList.class);
+		byte[] serialize = getSerializer().serialize(testList);
 		log.info("Byte array's length is {}", serialize.length);
-		Object deserialize = getSerializer().deserialize(serialize, ArrayList.class);
+		Object deserialize = getSerializer().deserialize(serialize);
 		assertEquals(testList, deserialize);
 	}
 
-	public void testSerialize_withMap() throws IOException, ClassNotFoundException {
-		byte[] serialize = getSerializer().serialize(testMap, HashMap.class);
+	public void testSerialize_withSet() throws IOException, ClassNotFoundException {
+		byte[] serialize = getSerializer().serialize(testSet);
 		log.info("Byte array's length is {}", serialize.length);
-		Object deserialize = getSerializer().deserialize(serialize, HashMap.class);
+		Object deserialize = getSerializer().deserialize(serialize);
+		assertEquals(testSet, deserialize);
+	}
+
+	public void testSerialize_withMap() throws IOException, ClassNotFoundException {
+		byte[] serialize = getSerializer().serialize(testMap);
+		log.info("Byte array's length is {}", serialize.length);
+		Object deserialize = getSerializer().deserialize(serialize);
 		assertEquals(testMap, deserialize);
 	}
 
-	public void testSerialize_withList_withWrapper() throws IOException, ClassNotFoundException {
-		CollectionWrapper<Object> obj = new CollectionWrapper<>(testList);
-		byte[] serialize = getSerializer().serialize(obj, CollectionWrapper.class);
-		log.info("Byte array's length is {}", serialize.length);
-		CollectionWrapper<Object> deserialize = (CollectionWrapper<Object>) getSerializer().deserialize(serialize,
-				CollectionWrapper.class);
-		assertEquals(testList, deserialize.collection);
-	}
-
-	public void testSerialize_withMap_withWrapper() throws IOException, ClassNotFoundException {
-		CollectionWrapper<Object> obj = new CollectionWrapper<>(testMap);
-		byte[] serialize = getSerializer().serialize(obj, CollectionWrapper.class);
-		log.info("Byte array's length is {}", serialize.length);
-		CollectionWrapper<Object> deserialize = (CollectionWrapper<Object>) getSerializer().deserialize(serialize,
-				CollectionWrapper.class);
-		assertEquals(testMap, deserialize.collection);
-	}
-
-	// @Test
+	@Test
 	public void testSerialize_batch() throws ClassNotFoundException, IOException {
-		for (int i = 0; i < 100000; i++) {
+		for (int i = 0; i < 200000; i++) {
 			testSerialize();
 		}
 	}

@@ -9,17 +9,12 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
 import io.github.qianlixy.framework.serialize.ExtensiveSerializer;
-import io.github.qianlixy.framework.serialize.SerializeWrapper;
 
-public class KryoSerializer implements ExtensiveSerializer {
-	
-	private SerializeWrapper wrapper;
-	
+public class KryoSerializer extends AbstractWrapSerializer implements ExtensiveSerializer {
+
 	private static Kryo kryo;
-	
+
 	public KryoSerializer() {
-		this.wrapper = new DefaultSerializeWrapper();
-		
 		if (null == kryo) {
 			synchronized (KryoSerializer.class) {
 				if (null == kryo) {
@@ -32,17 +27,7 @@ public class KryoSerializer implements ExtensiveSerializer {
 	}
 
 	@Override
-	public byte[] serialize(Object obj) throws IOException {
-		return wrapper.wrap(this, obj);
-	}
-
-	@Override
-	public Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
-		return wrapper.unwrap(this, bytes);
-	}
-
-	@Override
-	public byte[] serialize(Object obj, Class<?> clazz) throws IOException {
+	public byte[] wrapSerialize(Object obj) throws IOException {
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); Output output = new Output(baos)) {
 			kryo.writeObject(output, obj);
 			return output.toBytes();

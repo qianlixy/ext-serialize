@@ -34,14 +34,4 @@ public class JdkSerializer implements ExtensiveSerializer {
 		}
 	}
 
-	@Override
-	public byte[] serialize(Object obj, Class<?> clazz) throws IOException {
-		return serialize(obj);
-	}
-
-	@Override
-	public Object deserialize(byte[] bytes, Class<?> clazz) throws IOException, ClassNotFoundException {
-		return deserialize(bytes);
-	}
-
 }

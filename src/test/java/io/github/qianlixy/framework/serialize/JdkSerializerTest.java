@@ -31,4 +31,10 @@ public class JdkSerializerTest extends BaseTest {
 		super.testSerialize_withMap();
 	}
 
+	@Override
+	@Test
+	public void testSerialize_withSet() throws IOException, ClassNotFoundException {
+		super.testSerialize_withSet();
+	}
+
 }
