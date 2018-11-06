@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import io.github.qianlixy.framework.serialize.ExtensiveSerializer;
 import io.github.qianlixy.framework.serialize.SerializeWrapper;
 import io.github.qianlixy.framework.serialize.exception.SerializeException;
-import io.github.qianlixy.framework.serialize.wrap.PrefixClassBean;
+import io.github.qianlixy.framework.serialize.wrap.WrapBean;
 import io.github.qianlixy.framework.serialize.wrap.PrefixClassSerializeWrapper;
 
 public abstract class AbstractWrapSerializer implements ExtensiveSerializer {
@@ -40,7 +40,7 @@ public abstract class AbstractWrapSerializer implements ExtensiveSerializer {
 		if (!serializeWrapper.isWrap(bytes)) {
 			throw new SerializeException();
 		}
-		PrefixClassBean classBean = serializeWrapper.unwrap(bytes);
+		WrapBean classBean = serializeWrapper.unwrap(bytes);
 		return deserialize(classBean.getSource(), classBean.getClazz());
 	}
 
@@ -51,5 +51,9 @@ public abstract class AbstractWrapSerializer implements ExtensiveSerializer {
 	protected abstract byte[] doSerialize(Object obj) throws IOException;
 
 	protected abstract Object deserialize(byte[] bytes, Class<?> clazz) throws IOException, ClassNotFoundException;
+
+	public void setSerializeWrapper(SerializeWrapper serializeWrapper) {
+		this.serializeWrapper = serializeWrapper;
+	}
 
 }

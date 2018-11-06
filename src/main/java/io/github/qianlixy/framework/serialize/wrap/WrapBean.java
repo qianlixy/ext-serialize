@@ -1,16 +1,16 @@
 package io.github.qianlixy.framework.serialize.wrap;
 
-public class PrefixClassBean {
+public class WrapBean {
 
 	private Class<?> clazz;
 
 	private byte[] source;
 
-	public PrefixClassBean() {
+	public WrapBean() {
 
 	}
 
-	public PrefixClassBean(Class<?> clazz, byte[] source) {
+	public WrapBean(Class<?> clazz, byte[] source) {
 		super();
 		this.clazz = clazz;
 		this.source = source;

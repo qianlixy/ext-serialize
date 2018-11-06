@@ -11,8 +11,6 @@ import io.github.qianlixy.framework.serialize.exception.SerializeException;
 
 public class PrefixClassSerializeWrapper implements SerializeWrapper {
 
-	private static final byte SERIALIZION_PREFIX = 125;
-
 	protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private static final Class<?>[] NOT_SUPPORT = { Byte.class, Integer.class, Character.class, Long.class, Float.class,
@@ -35,15 +33,11 @@ public class PrefixClassSerializeWrapper implements SerializeWrapper {
 	}
 
 	@Override
-	public PrefixClassBean unwrap(byte[] bytes) throws IOException, ClassNotFoundException {
+	public WrapBean unwrap(byte[] bytes) throws IOException, ClassNotFoundException {
 		int length = bytes[1], start = 2;
 		byte[] classSerialization = ArrayUtils.subarray(bytes, start + length, bytes.length);
 		Class<?> clazz = Class.forName(new String(ArrayUtils.subarray(bytes, start, start + length)));
-		return new PrefixClassBean(clazz, classSerialization);
-	}
-
-	public boolean isWrap(byte[] bytes) {
-		return SERIALIZION_PREFIX == bytes[0];
+		return new WrapBean(clazz, classSerialization);
 	}
 
 }

@@ -2,13 +2,17 @@ package io.github.qianlixy.framework.serialize;
 
 import java.io.IOException;
 
-import io.github.qianlixy.framework.serialize.wrap.PrefixClassBean;
+import io.github.qianlixy.framework.serialize.wrap.WrapBean;
 
 public interface SerializeWrapper {
+	
+	byte SERIALIZION_PREFIX = 125;
 
 	byte[] wrap(Object serializable) throws IOException;
 	
-	PrefixClassBean unwrap(byte[] source) throws IOException, ClassNotFoundException;
+	WrapBean unwrap(byte[] source) throws IOException, ClassNotFoundException;
 	
-	boolean isWrap(byte[] source);
+	default boolean isWrap(byte[] source) {
+		return SERIALIZION_PREFIX == source[0];
+	};
 }
