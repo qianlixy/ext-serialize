@@ -1,6 +1,9 @@
 package io.github.qianlixy.framework.serialize.bean;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +21,15 @@ public class TestBean implements Serializable {
 		this.age = age;
 	}
 
+	public TestBean(String name, int age, List<String> list, Set<String> set, Map<String, Object> map) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.list = list;
+		this.set = set;
+		this.map = map;
+	}
+
 	@Setter
 	@Getter
 	private String name;
@@ -26,12 +38,27 @@ public class TestBean implements Serializable {
 	@Getter
 	private int age;
 
+	@Setter
+	@Getter
+	private List<String> list;
+
+	@Setter
+	@Getter
+	private Set<String> set;
+
+	@Setter
+	@Getter
+	private Map<String, Object> map;
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + age;
+		result = prime * result + ((list == null) ? 0 : list.hashCode());
+		result = prime * result + ((map == null) ? 0 : map.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((set == null) ? 0 : set.hashCode());
 		return result;
 	}
 
@@ -46,11 +73,27 @@ public class TestBean implements Serializable {
 		TestBean other = (TestBean) obj;
 		if (age != other.age)
 			return false;
+		if (list == null) {
+			if (other.list != null)
+				return false;
+		} else if (!list.equals(other.list))
+			return false;
+		if (map == null) {
+			if (other.map != null)
+				return false;
+		} else if (!map.equals(other.map))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (set == null) {
+			if (other.set != null)
+				return false;
+		} else if (!set.equals(other.set))
+			return false;
 		return true;
 	}
+
 }

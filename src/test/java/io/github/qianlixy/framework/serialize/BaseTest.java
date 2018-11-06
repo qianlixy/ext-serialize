@@ -24,7 +24,7 @@ public abstract class BaseTest {
 
 	protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	protected static TestBean testBean = new TestBean("Dong", 22);
+	protected static TestBean testBean;
 
 	protected static List<TestBean> testList = null;
 
@@ -34,13 +34,26 @@ public abstract class BaseTest {
 
 	@BeforeClass
 	public static void beforeClass() {
+		List<String> list = new ArrayList<>();
+		list.add("111111");
+		list.add("222222");
+		list.add("333333");
+		Set<String> set = new HashSet<>();
+		set.add("111111");
+		set.add("222222");
+		set.add("333333");
+		Map<String, Object> map = new HashMap<>();
+		map.put("111111", "111111");
+		map.put("222222", "222222");
+		map.put("333333", "333333");
+		testBean = new TestBean("Dong", 22, list, set, map);
+		
 		testList = new ArrayList<>();
 		((List<TestBean>) testList).add(new TestBean("Dong", 21));
 		((List<TestBean>) testList).add(new TestBean("Dong1", 22));
 		((List<TestBean>) testList).add(new TestBean("Dong2", 23));
 		((List<TestBean>) testList).add(new TestBean("Dong3", 24));
 		((List<TestBean>) testList).add(new TestBean("Dong4", 25));
-		((List<TestBean>) testList).add(new TestBean("Dong5", 26));
 
 		testSet = new HashSet<>();
 		((Set<TestBean>) testSet).add(new TestBean("Dong", 21));
@@ -78,6 +91,7 @@ public abstract class BaseTest {
 
 	public void testSerialize_withList() throws IOException, ClassNotFoundException {
 		byte[] serialize = getSerializer().serialize(testList);
+		log.info("Byte array is {}", serialize);
 		log.info("Byte array's length is {}", serialize.length);
 		Object deserialize = getSerializer().deserialize(serialize);
 		assertEquals(testList, deserialize);

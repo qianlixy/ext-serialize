@@ -13,6 +13,8 @@ import io.github.qianlixy.framework.serialize.ExtensiveSerializer;
 public class KryoSerializer extends AbstractWrapSerializer implements ExtensiveSerializer {
 
 	private static Kryo kryo;
+	
+	private static int bufferSize = 1024 * 20;
 
 	public KryoSerializer() {
 		if (null == kryo) {
@@ -28,7 +30,8 @@ public class KryoSerializer extends AbstractWrapSerializer implements ExtensiveS
 
 	@Override
 	public byte[] doSerialize(Object obj) throws IOException {
-		try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); Output output = new Output(baos)) {
+		try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+				Output output = new Output(baos, bufferSize)) {
 			kryo.writeObject(output, obj);
 			return output.toBytes();
 		} catch (IOException e) {

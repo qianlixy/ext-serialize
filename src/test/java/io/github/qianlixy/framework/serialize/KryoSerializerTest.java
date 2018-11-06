@@ -36,5 +36,5 @@ public class KryoSerializerTest extends BaseTest {
 	public void testSerialize_withSet() throws IOException, ClassNotFoundException {
 		super.testSerialize_withSet();
 	}
-
+	
 }
