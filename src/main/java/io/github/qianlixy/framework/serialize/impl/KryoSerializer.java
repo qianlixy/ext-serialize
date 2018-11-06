@@ -27,7 +27,7 @@ public class KryoSerializer extends AbstractWrapSerializer implements ExtensiveS
 	}
 
 	@Override
-	public byte[] wrapSerialize(Object obj) throws IOException {
+	public byte[] doSerialize(Object obj) throws IOException {
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); Output output = new Output(baos)) {
 			kryo.writeObject(output, obj);
 			return output.toBytes();

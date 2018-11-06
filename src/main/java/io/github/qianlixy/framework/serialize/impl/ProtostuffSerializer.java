@@ -1,5 +1,8 @@
 package io.github.qianlixy.framework.serialize.impl;
 
+import java.util.Collection;
+import java.util.Map;
+
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
 
@@ -20,16 +23,15 @@ public class ProtostuffSerializer extends AbstractWrapSerializer implements Exte
 	 */
 	private static Objenesis objenesis = new ObjenesisStd(true);
 
-	public byte[] wrapSerialize(Object cache) {
-		log.debug("The cache serializing");
-		if (null == cache) {
-			throw new NullPointerException("The cache cannot be null");
+	public byte[] doSerialize(Object serializable) {
+		if (null == serializable) {
+			throw new NullPointerException("The serializable cannot be null");
 		}
 		@SuppressWarnings("unchecked")
-		Schema<Object> schema = (Schema<Object>) RuntimeSchema.getSchema(cache.getClass());
+		Schema<Object> schema = (Schema<Object>) RuntimeSchema.getSchema(serializable.getClass());
 		LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);
 		try {
-			return ProtostuffIOUtil.toByteArray(cache, schema, buffer);
+			return ProtostuffIOUtil.toByteArray(serializable, schema, buffer);
 		} finally {
 			buffer.clear();
 		}
@@ -38,9 +40,29 @@ public class ProtostuffSerializer extends AbstractWrapSerializer implements Exte
 	public Object deserialize(byte[] bytes, Class<?> clazz) {
 		@SuppressWarnings("unchecked")
 		Schema<Object> schema = (Schema<Object>) RuntimeSchema.getSchema(clazz);
-		Object cache = objenesis.newInstance(clazz);
-		ProtostuffIOUtil.mergeFrom(bytes, cache, schema);
-		return cache;
+		Object source = objenesis.newInstance(clazz);
+		ProtostuffIOUtil.mergeFrom(bytes, source, schema);
+		if (source instanceof Wrapper) {
+			return ((Wrapper) source).source;
+		}
+		return source;
+	}
+
+	@Override
+	protected Object doWrap(Object obj) {
+		if (obj instanceof Map || obj instanceof Collection) {
+			return new Wrapper(obj);
+		}
+		return super.doWrap(obj);
+	}
+
+	public static class Wrapper {
+
+		public Object source;
+
+		public Wrapper(Object source) {
+			this.source = source;
+		}
 	}
 
 }

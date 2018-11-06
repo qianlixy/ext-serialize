@@ -58,7 +58,7 @@ public abstract class BaseTest {
 
 	public void testSerialize() throws IOException, ClassNotFoundException {
 		byte[] serialize = getSerializer().serialize(testBean);
-		// log.info("Byte array's length is {}", serialize.length);
+		log.info("Byte array's length is {}", serialize.length);
 		Object deserialize = getSerializer().deserialize(serialize);
 		assertEquals(testBean, deserialize);
 	}
@@ -84,7 +84,7 @@ public abstract class BaseTest {
 		assertEquals(testMap, deserialize);
 	}
 
-	@Test
+	// @Test
 	public void testSerialize_batch() throws ClassNotFoundException, IOException {
 		for (int i = 0; i < 200000; i++) {
 			testSerialize();
