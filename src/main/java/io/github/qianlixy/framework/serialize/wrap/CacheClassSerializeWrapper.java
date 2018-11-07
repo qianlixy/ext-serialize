@@ -18,7 +18,7 @@ public class CacheClassSerializeWrapper implements SerializeWrapper {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	private ConcurrentMap<String, Class<?>> cacheClasses = new ConcurrentHashMap<>();
+	private static final ConcurrentMap<String, Class<?>> cacheClasses = new ConcurrentHashMap<>();
 
 	@Override
 	public byte[] wrap(Object serializable) throws IOException {

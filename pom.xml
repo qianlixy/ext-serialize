@@ -19,7 +19,6 @@
 			<groupId>com.esotericsoftware</groupId>
 			<artifactId>kryo</artifactId>
 			<version>4.0.2</version>
-			<optional>true</optional>
 		</dependency>
 
 		<!-- Protostuff serialize -->

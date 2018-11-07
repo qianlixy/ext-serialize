@@ -12,9 +12,6 @@ public class TestBean implements Serializable {
 
 	private static final long serialVersionUID = 3458239028793164159L;
 
-	public TestBean() {
-	}
-
 	public TestBean(String name, int age) {
 		super();
 		this.name = name;
@@ -94,6 +91,11 @@ public class TestBean implements Serializable {
 		} else if (!set.equals(other.set))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "TestBean [name=" + name + ", age=" + age + ", list=" + list + ", set=" + set + ", map=" + map + "]";
 	}
 
 }

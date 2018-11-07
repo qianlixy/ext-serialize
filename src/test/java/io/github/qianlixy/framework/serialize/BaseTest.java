@@ -84,29 +84,43 @@ public abstract class BaseTest {
 
 	public void testSerialize() throws IOException, ClassNotFoundException {
 		byte[] serialize = getSerializer().serialize(testBean);
-		// log.info("Byte array's length is {}", serialize.length);
+		if (log.isDebugEnabled()) {
+			log.debug("Byte array is {}", serialize);
+			log.debug("Byte array's length is {}", serialize.length);
+		}
 		Object deserialize = getSerializer().deserialize(serialize);
+		if (log.isDebugEnabled()) {
+			log.debug("Deserialize is {}", deserialize);
+		}
 		assertEquals(testBean, deserialize);
 	}
 
 	public void testSerialize_withList() throws IOException, ClassNotFoundException {
 		byte[] serialize = getSerializer().serialize(testList);
-		log.info("Byte array is {}", serialize);
-		log.info("Byte array's length is {}", serialize.length);
+		if (log.isDebugEnabled()) {
+			log.debug("Byte array is {}", serialize);
+			log.debug("Byte array's length is {}", serialize.length);
+		}
 		Object deserialize = getSerializer().deserialize(serialize);
 		assertEquals(testList, deserialize);
 	}
 
 	public void testSerialize_withSet() throws IOException, ClassNotFoundException {
 		byte[] serialize = getSerializer().serialize(testSet);
-		log.info("Byte array's length is {}", serialize.length);
+		if (log.isDebugEnabled()) {
+			log.debug("Byte array is {}", serialize);
+			log.debug("Byte array's length is {}", serialize.length);
+		}
 		Object deserialize = getSerializer().deserialize(serialize);
 		assertEquals(testSet, deserialize);
 	}
 
 	public void testSerialize_withMap() throws IOException, ClassNotFoundException {
 		byte[] serialize = getSerializer().serialize(testMap);
-		log.info("Byte array's length is {}", serialize.length);
+		if (log.isDebugEnabled()) {
+			log.debug("Byte array is {}", serialize);
+			log.debug("Byte array's length is {}", serialize.length);
+		}
 		Object deserialize = getSerializer().deserialize(serialize);
 		assertEquals(testMap, deserialize);
 	}

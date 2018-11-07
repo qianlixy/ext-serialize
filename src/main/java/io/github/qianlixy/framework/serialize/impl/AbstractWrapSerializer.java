@@ -41,6 +41,10 @@ public abstract class AbstractWrapSerializer implements ExtensiveSerializer {
 			throw new SerializeException();
 		}
 		WrapBean classBean = serializeWrapper.unwrap(bytes);
+		if (null == classBean.getClazz()) {
+			log.warn("Deserialize Class is null, return null");
+			return null;
+		}
 		return deserialize(classBean.getSource(), classBean.getClazz());
 	}
 

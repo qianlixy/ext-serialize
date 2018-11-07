@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import org.objenesis.strategy.StdInstantiatorStrategy;
+
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
@@ -12,27 +14,26 @@ import io.github.qianlixy.framework.serialize.ExtensiveSerializer;
 
 public class KryoSerializer extends AbstractWrapSerializer implements ExtensiveSerializer {
 
-	private static Kryo kryo;
-	
 	private static int bufferSize = 1024 * 20;
 
-	public KryoSerializer() {
-		if (null == kryo) {
-			synchronized (KryoSerializer.class) {
-				if (null == kryo) {
-					kryo = new Kryo();
-					kryo.setReferences(false);
-					kryo.setRegistrationRequired(false);
-				}
-			}
+	private static final ThreadLocal<Kryo> kryos = new ThreadLocal<Kryo>() {
+
+		@Override
+		protected Kryo initialValue() {
+			Kryo kryo = new Kryo();
+			kryo.setReferences(false);
+			kryo.setRegistrationRequired(false);
+			((Kryo.DefaultInstantiatorStrategy) kryo.getInstantiatorStrategy())
+					.setFallbackInstantiatorStrategy(new StdInstantiatorStrategy());
+			return kryo;
 		}
-	}
+
+	};
 
 	@Override
 	public byte[] doSerialize(Object obj) throws IOException {
-		try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
-				Output output = new Output(baos, bufferSize)) {
-			kryo.writeObject(output, obj);
+		try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); Output output = new Output(baos, bufferSize)) {
+			kryos.get().writeObject(output, obj);
 			return output.toBytes();
 		} catch (IOException e) {
 			throw e;
@@ -43,7 +44,7 @@ public class KryoSerializer extends AbstractWrapSerializer implements ExtensiveS
 	public Object deserialize(byte[] bytes, Class<?> clazz) throws IOException, ClassNotFoundException {
 		try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
 				Input input = new Input(byteArrayInputStream)) {
-			return kryo.readObject(input, clazz);
+			return kryos.get().readObject(input, clazz);
 		} catch (IOException e) {
 			throw e;
 		}
