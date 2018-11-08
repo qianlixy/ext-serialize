@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.qianlixy</groupId>
 	<artifactId>ext-serialize</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	
 	<name>ext-serialize</name>
 	<description>Extensive serialize</description>
@@ -162,6 +162,20 @@
 						<configuration>
 							<additionalparam>-Xdoclint:none</additionalparam>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
