@@ -12,10 +12,22 @@ import com.esotericsoftware.kryo.io.Output;
 
 import io.github.qianlixy.extserialize.ExtensiveSerializer;
 
+/**
+ * kryo序列化实现类
+ * 
+ * @author Qianli
+ * @since 1.0.0
+ */
 public class KryoSerializer extends AbstractWrapSerializer implements ExtensiveSerializer {
 
+	/**
+	 * Buffer size
+	 */
 	private static int bufferSize = 1024 * 20;
 
+	/**
+	 * kryo实例。保存在ThreadLocal对象，保证并发情况下正常使用。
+	 */
 	private static final ThreadLocal<Kryo> kryos = new ThreadLocal<Kryo>() {
 
 		@Override

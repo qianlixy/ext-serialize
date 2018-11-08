@@ -9,10 +9,22 @@ import org.slf4j.LoggerFactory;
 import io.github.qianlixy.extserialize.SerializeWrapper;
 import io.github.qianlixy.extserialize.exception.SerializeException;
 
+/**
+ * 前缀Class信息的序列化包装实现类
+ * 
+ * @author Qianli
+ * @since 1.0.0
+ */
 public class PrefixClassSerializeWrapper implements SerializeWrapper {
 
+	/**
+	 * 日志打印
+	 */
 	protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
+	/**
+	 * 不支持的类型
+	 */
 	private static final Class<?>[] NOT_SUPPORT = { Byte.class, Integer.class, Character.class, Long.class, Float.class,
 			Double.class, Boolean.class, String.class };
 

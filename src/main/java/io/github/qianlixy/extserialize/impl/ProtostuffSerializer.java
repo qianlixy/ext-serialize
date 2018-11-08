@@ -12,6 +12,12 @@ import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
 
+/**
+ * Protostuff序列化实现类
+ * 
+ * @author Qianli
+ * @since 1.0.0
+ */
 public class ProtostuffSerializer extends AbstractWrapSerializer implements ExtensiveSerializer {
 
 	static {
@@ -19,10 +25,11 @@ public class ProtostuffSerializer extends AbstractWrapSerializer implements Exte
 	}
 
 	/**
-	 * �޲ι��칤��
+	 * 无参构造工具
 	 */
 	private static Objenesis objenesis = new ObjenesisStd(true);
 
+	@Override
 	public byte[] doSerialize(Object serializable) {
 		if (null == serializable) {
 			throw new NullPointerException("The serializable cannot be null");
@@ -37,6 +44,7 @@ public class ProtostuffSerializer extends AbstractWrapSerializer implements Exte
 		}
 	}
 
+	@Override
 	public Object deserialize(byte[] bytes, Class<?> clazz) {
 		@SuppressWarnings("unchecked")
 		Schema<Object> schema = (Schema<Object>) RuntimeSchema.getSchema(clazz);
@@ -56,10 +64,25 @@ public class ProtostuffSerializer extends AbstractWrapSerializer implements Exte
 		return super.doWrap(obj);
 	}
 
+	/**
+	 * 包装对象。Protostuff不能直接序列化Collection与Map，使用该对象包装一层。
+	 * 
+	 * @author Qianli
+	 * @since 1.0.0
+	 */
 	public static class Wrapper {
 
+		/**
+		 * 源对象
+		 */
 		public Object source;
 
+		/**
+		 * 构造函数
+		 * 
+		 * @param source
+		 *            源对象
+		 */
 		public Wrapper(Object source) {
 			this.source = source;
 		}

@@ -14,10 +14,22 @@ import org.slf4j.LoggerFactory;
 import io.github.qianlixy.extserialize.SerializeWrapper;
 import io.github.qianlixy.extserialize.exception.SerializeException;
 
+/**
+ * 缓存Class信息的序列化包装实现类
+ * 
+ * @author Qianli
+ * @since 1.0.0
+ */
 public class CacheClassSerializeWrapper implements SerializeWrapper {
-	
+
+	/**
+	 * 日志打印
+	 */
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
+	/**
+	 * 缓存的Class信息
+	 */
 	private static final ConcurrentMap<String, Class<?>> cacheClasses = new ConcurrentHashMap<>();
 
 	@Override
@@ -36,6 +48,13 @@ public class CacheClassSerializeWrapper implements SerializeWrapper {
 		return new WrapBean(cacheClasses.get(md5), ArrayUtils.subarray(source, 17, source.length));
 	}
 
+	/**
+	 * 获取MD5值
+	 * 
+	 * @param className
+	 *            类名称
+	 * @return MD5值
+	 */
 	private byte[] md5(String className) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");

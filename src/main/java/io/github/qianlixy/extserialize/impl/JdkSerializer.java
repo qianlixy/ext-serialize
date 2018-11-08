@@ -8,6 +8,12 @@ import java.io.ObjectOutputStream;
 
 import io.github.qianlixy.extserialize.ExtensiveSerializer;
 
+/**
+ * JDK原生序列化实现类
+ * 
+ * @author Qianli
+ * @since 1.0.0
+ */
 public class JdkSerializer implements ExtensiveSerializer {
 
 	@Override
