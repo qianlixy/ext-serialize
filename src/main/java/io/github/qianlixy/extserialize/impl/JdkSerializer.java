@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.impl;
+package io.github.qianlixy.extserialize.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import io.github.qianlixy.framework.serialize.ExtensiveSerializer;
+import io.github.qianlixy.extserialize.ExtensiveSerializer;
 
 public class JdkSerializer implements ExtensiveSerializer {
 

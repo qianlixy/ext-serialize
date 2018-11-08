@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.impl;
+package io.github.qianlixy.extserialize.impl;
 
 import java.io.IOException;
 
@@ -6,11 +6,11 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.github.qianlixy.framework.serialize.ExtensiveSerializer;
-import io.github.qianlixy.framework.serialize.SerializeWrapper;
-import io.github.qianlixy.framework.serialize.exception.SerializeException;
-import io.github.qianlixy.framework.serialize.wrap.WrapBean;
-import io.github.qianlixy.framework.serialize.wrap.PrefixClassSerializeWrapper;
+import io.github.qianlixy.extserialize.ExtensiveSerializer;
+import io.github.qianlixy.extserialize.SerializeWrapper;
+import io.github.qianlixy.extserialize.exception.SerializeException;
+import io.github.qianlixy.extserialize.wrap.PrefixClassSerializeWrapper;
+import io.github.qianlixy.extserialize.wrap.WrapBean;
 
 public abstract class AbstractWrapSerializer implements ExtensiveSerializer {
 

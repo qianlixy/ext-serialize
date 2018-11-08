@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.wrap;
+package io.github.qianlixy.extserialize.wrap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,8 +6,10 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import io.github.qianlixy.framework.serialize.SerializeWrapper;
-import io.github.qianlixy.framework.serialize.bean.TestBean;
+import io.github.qianlixy.extserialize.SerializeWrapper;
+import io.github.qianlixy.extserialize.bean.TestBean;
+import io.github.qianlixy.extserialize.wrap.CacheClassSerializeWrapper;
+import io.github.qianlixy.extserialize.wrap.WrapBean;
 
 public class CacheClassSerializeWrapperTest {
 	

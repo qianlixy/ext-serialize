@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.bean;
+package io.github.qianlixy.extserialize.bean;
 
 import java.io.Serializable;
 import java.util.List;

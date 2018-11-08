@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.wrap;
+package io.github.qianlixy.extserialize.wrap;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -11,8 +11,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.github.qianlixy.framework.serialize.SerializeWrapper;
-import io.github.qianlixy.framework.serialize.exception.SerializeException;
+import io.github.qianlixy.extserialize.SerializeWrapper;
+import io.github.qianlixy.extserialize.exception.SerializeException;
 
 public class CacheClassSerializeWrapper implements SerializeWrapper {
 	

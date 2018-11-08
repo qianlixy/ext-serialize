@@ -1,8 +1,8 @@
-package io.github.qianlixy.framework.serialize;
+package io.github.qianlixy.extserialize;
 
 import java.io.IOException;
 
-import io.github.qianlixy.framework.serialize.wrap.WrapBean;
+import io.github.qianlixy.extserialize.wrap.WrapBean;
 
 public interface SerializeWrapper {
 	

@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize;
+package io.github.qianlixy.extserialize;
 
 import java.io.IOException;
 

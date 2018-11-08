@@ -1,28 +1,30 @@
-package io.github.qianlixy.framework.serialize;
+package io.github.qianlixy.extserialize.impl;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
-import io.github.qianlixy.framework.serialize.impl.JdkSerializer;
+import io.github.qianlixy.extserialize.BaseTest;
+import io.github.qianlixy.extserialize.ExtensiveSerializer;
+import io.github.qianlixy.extserialize.impl.KryoSerializer;
 
-public class JdkSerializerTest extends BaseTest {
-	private JdkSerializer serializer = new JdkSerializer();
+public class KryoSerializerTest extends BaseTest {
 
-	protected ExtensiveSerializer getSerializer() {
-		return serializer;
-	}
+	private ExtensiveSerializer serializer = new KryoSerializer();
 
-	@Override
 	@Test
-	public void testSerialize() throws IOException, ClassNotFoundException {
+	public void testSerialize() throws ClassNotFoundException, IOException {
 		super.testSerialize();
 	}
 
-	@Override
 	@Test
 	public void testSerialize_withList() throws IOException, ClassNotFoundException {
 		super.testSerialize_withList();
+	}
+
+	@Override
+	protected ExtensiveSerializer getSerializer() {
+		return serializer;
 	}
 
 	@Override
@@ -36,5 +38,5 @@ public class JdkSerializerTest extends BaseTest {
 	public void testSerialize_withSet() throws IOException, ClassNotFoundException {
 		super.testSerialize_withSet();
 	}
-
+	
 }

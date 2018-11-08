@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.impl;
+package io.github.qianlixy.extserialize.impl;
 
 import java.util.Collection;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
 
-import io.github.qianlixy.framework.serialize.ExtensiveSerializer;
+import io.github.qianlixy.extserialize.ExtensiveSerializer;
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;

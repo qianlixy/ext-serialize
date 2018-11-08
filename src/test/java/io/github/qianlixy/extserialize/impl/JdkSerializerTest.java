@@ -1,19 +1,21 @@
-package io.github.qianlixy.framework.serialize;
+package io.github.qianlixy.extserialize.impl;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
-import io.github.qianlixy.framework.serialize.impl.ProtostuffSerializer;
+import io.github.qianlixy.extserialize.BaseTest;
+import io.github.qianlixy.extserialize.ExtensiveSerializer;
+import io.github.qianlixy.extserialize.impl.JdkSerializer;
 
-public class ProtostuffSerializerTest extends BaseTest {
-
-	private ExtensiveSerializer serializer = new ProtostuffSerializer();
+public class JdkSerializerTest extends BaseTest {
+	private JdkSerializer serializer = new JdkSerializer();
 
 	protected ExtensiveSerializer getSerializer() {
 		return serializer;
 	}
 
+	@Override
 	@Test
 	public void testSerialize() throws IOException, ClassNotFoundException {
 		super.testSerialize();

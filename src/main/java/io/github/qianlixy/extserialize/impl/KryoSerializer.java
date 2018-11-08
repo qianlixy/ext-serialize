@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.impl;
+package io.github.qianlixy.extserialize.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,7 +10,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-import io.github.qianlixy.framework.serialize.ExtensiveSerializer;
+import io.github.qianlixy.extserialize.ExtensiveSerializer;
 
 public class KryoSerializer extends AbstractWrapSerializer implements ExtensiveSerializer {
 

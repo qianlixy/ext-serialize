@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.wrap;
+package io.github.qianlixy.extserialize.wrap;
 
 public class WrapBean {
 

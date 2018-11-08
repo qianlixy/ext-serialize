@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize.exception;
+package io.github.qianlixy.extserialize.exception;
 
 public class SerializeException extends RuntimeException {
 

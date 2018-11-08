@@ -1,4 +1,4 @@
-package io.github.qianlixy.framework.serialize;
+package io.github.qianlixy.extserialize;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,9 +16,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.github.qianlixy.framework.serialize.bean.TestBean;
-import io.github.qianlixy.framework.serialize.impl.AbstractWrapSerializer;
-import io.github.qianlixy.framework.serialize.wrap.CacheClassSerializeWrapper;
+import io.github.qianlixy.extserialize.ExtensiveSerializer;
+import io.github.qianlixy.extserialize.SerializeWrapper;
+import io.github.qianlixy.extserialize.bean.TestBean;
+import io.github.qianlixy.extserialize.impl.AbstractWrapSerializer;
+import io.github.qianlixy.extserialize.wrap.CacheClassSerializeWrapper;
 
 public abstract class BaseTest {
 
