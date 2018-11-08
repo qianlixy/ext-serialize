@@ -4,8 +4,8 @@
 	<groupId>io.github.qianlixy</groupId>
 	<artifactId>ext-serialize</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>qianlixy-framework-serialize</name>
-	<description>qianlixy-framework-serialize</description>
+	<name>ext-serialize</name>
+	<description>Extensive serialize</description>
 
 	<dependencies>
 		<dependency>
