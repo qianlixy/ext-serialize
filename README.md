@@ -3,3 +3,24 @@
 
 # ext-serialize
 Extensive serialize
+
+## Useage
+```
+// JDK serialize
+ExtensiveSerializer serializer = new JdkSerializer();
+byte[] serialize = getSerializer().serialize(testBean);
+Object deserialize = getSerializer().deserialize(serialize);
+assertEquals(testBean, deserialize);
+
+// Kryo serialize
+ExtensiveSerializer serializer = new KryoSerializer();
+byte[] serialize = getSerializer().serialize(testBean);
+Object deserialize = getSerializer().deserialize(serialize);
+assertEquals(testBean, deserialize);
+
+// Protostuff serialize
+ExtensiveSerializer serializer = new ProtostuffSerializer();
+byte[] serialize = getSerializer().serialize(testBean);
+Object deserialize = getSerializer().deserialize(serialize);
+assertEquals(testBean, deserialize);
+```
