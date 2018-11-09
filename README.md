@@ -2,7 +2,7 @@
 [![GitHub license](https://img.shields.io/github/license/qianlixy/ext-serialize.svg)](https://github.com/qianlixy/ext-serialize/blob/master/LICENSE)
 
 # ext-serialize
-Extensive serialize
+Java extensive serialize. Include jdk/kryo/protostuff.
 
 ## Useage
 ```
